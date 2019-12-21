@@ -17,4 +17,10 @@ if [ ! -f $SCALAFMT ]; then
   chmod +x $SCALAFMT
 fi
 
-$SCALAFMT "$@"
+error_message=`$SCALAFMT "$@"`
+
+if [[ $error_message == *"Exception"* ]]; then
+  exit 1
+else
+  exit 0
+fi
